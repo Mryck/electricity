@@ -1,16 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
-import './../node_modules/bulma/css/bulma.css'
-import socketio from 'socket.io-client';
-import VueSocketIO from 'vue-socket.io';
-import "@mdi/font/css/materialdesignicons.css";
-
-export const SocketInstance = socketio('http://localhost:5000');
-
-Vue.use(new VueSocketIO({
-  debug: true,
-  connection: SocketInstance
-}));
+import 'bulma/css/bulma.css'
+import "@mdi/font/css/materialdesignicons.css"
 
 Vue.config.productionTip = false
 

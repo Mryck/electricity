@@ -25,16 +25,56 @@
     </section>
     <br />
     <div class="container">
-      <!-- TODO: Add component for the table -->
-      <!-- TODO: Add component for the chart -->
+      <dashboard-table></dashboard-table>
+      <dashboard-chart :data="chartData"></dashboard-chart>
     </div>
   </div>
 </template>
 
 <script>
+import DashboardChart from "./DashboardChart.vue";
+import DashboardTable from "./DashboardTable.vue";
+
 export default {
+  components: {
+    DashboardChart,
+    DashboardTable
+  },
   data() {
-    return {};
+    return {
+      chartData: Object,
+      rawData: [
+        { date: "1-10-19", hCreuses: 15000, hPleines: "31000" },
+        { date: "1-11-19", hCreuses: 16000, hPleines: "32000" },
+        { date: "1-12-19", hCreuses: 17000, hPleines: "33000" }
+      ]
+    };
+  },
+  methods: {
+    addData() {},
+    config() {}
+  },
+  created() {
+    this.chartData = {
+      labels: [this.rawData[0].date, this.rawData[1].date, this.rawData[2].date],
+      datasets: [
+        {
+          label: "H Pleines",
+          backgroundColor: "#f87979",
+          data: [this.rawData[0].hPleines]
+        },
+        {
+          label: "H Creuses",
+          backgroundColor: "#f87979",
+          data: [this.rawData[0].hCreuses]
+        }
+      ]
+    };
+  },
+  mounted() {
+    // TODO: Loads data from axios
+
+
   }
 };
 </script>
