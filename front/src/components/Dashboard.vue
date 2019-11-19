@@ -25,7 +25,7 @@
     </section>
     <br />
     <div class="container">
-      <dashboard-table></dashboard-table>
+      <dashboard-table :data="rawData"></dashboard-table>
       <dashboard-chart :data="chartData"></dashboard-chart>
     </div>
   </div>
@@ -44,9 +44,9 @@ export default {
     return {
       chartData: Object,
       rawData: [
-        { date: "1-10-19", hCreuses: 15000, hPleines: "31000" },
-        { date: "1-11-19", hCreuses: 16000, hPleines: "32000" },
-        { date: "1-12-19", hCreuses: 17000, hPleines: "33000" }
+        { date: "1-10-19", hCreuses: 15000, hPleines: 31000 },
+        { date: "1-11-19", hCreuses: 16000, hPleines: 32000 },
+        { date: "1-12-19", hCreuses: 17000, hPleines: 33000 }
       ]
     };
   },
@@ -55,26 +55,34 @@ export default {
     config() {}
   },
   created() {
+    let xAxis = [];
+    let hPleines = [];
+    let hCreuses = [];
+
+    this.rawData.forEach(element => {
+      xAxis.push(element.date);
+      hPleines.push(element.hPleines);
+      hCreuses.push(element.hCreuses);
+    });
+
     this.chartData = {
-      labels: [this.rawData[0].date, this.rawData[1].date, this.rawData[2].date],
+      labels: xAxis,
       datasets: [
         {
           label: "H Pleines",
-          backgroundColor: "#f87979",
-          data: [this.rawData[0].hPleines]
+          backgroundColor: "#4e65d8",
+          data: hPleines
         },
         {
           label: "H Creuses",
-          backgroundColor: "#f87979",
-          data: [this.rawData[0].hCreuses]
+          backgroundColor: "#4ed862",
+          data: hCreuses
         }
       ]
     };
   },
   mounted() {
     // TODO: Loads data from axios
-
-
   }
 };
 </script>
