@@ -4,10 +4,10 @@
       <thead>
         <tr>
           <th>Date</th>
-          <th>Peake Kwh</th>
-          <th>Peake Price</th>
-          <th>Off-Peake Kwh</th>
-          <th>Off-Peake Price</th>
+          <th>Peak Kwh</th>
+          <th>Peak Price</th>
+          <th>Off-Peak Kwh</th>
+          <th>Off-Peak Price</th>
         </tr>
       </thead>
       <tbody>
