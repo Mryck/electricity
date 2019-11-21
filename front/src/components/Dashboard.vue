@@ -44,9 +44,9 @@ export default {
     return {
       chartData: Object,
       rawData: [
-        { date: "1-10-19", hCreuses: 15000, hPleines: 31000 },
-        { date: "1-11-19", hCreuses: 16000, hPleines: 32000 },
-        { date: "1-12-19", hCreuses: 17000, hPleines: 33000 }
+        { date: "1-10-19", offPeak: 15000, peak: 31000 },
+        { date: "1-11-19", offPeak: 16000, peak: 32000 },
+        { date: "1-12-19", offPeak: 17000, peak: 33000 }
       ]
     };
   },
@@ -56,27 +56,27 @@ export default {
   },
   created() {
     let xAxis = [];
-    let hPleines = [];
-    let hCreuses = [];
+    let peak = [];
+    let offPeak = [];
 
     this.rawData.forEach(element => {
       xAxis.push(element.date);
-      hPleines.push(element.hPleines);
-      hCreuses.push(element.hCreuses);
+      peak.push(element.peak);
+      offPeak.push(element.offPeak);
     });
 
     this.chartData = {
       labels: xAxis,
       datasets: [
         {
-          label: "H Pleines",
+          label: "Peak",
           backgroundColor: "#4e65d8",
-          data: hPleines
+          data: peak
         },
         {
-          label: "H Creuses",
+          label: "Off-Peak",
           backgroundColor: "#4ed862",
-          data: hCreuses
+          data: offPeak
         }
       ]
     };
