@@ -1,5 +1,26 @@
 <template>
   <div>
+    <!-- <modal v-show="isModalVisible">
+      <p slot="title">{{ title }}</p>
+      <button class="delete" slot="header-button" @click="closeModal" aria-label="close"></button>
+      <p class="content" slot="body">{{ bodyInfo.details }}</p>
+      <br />
+      <table slot="body-infos" class="table is-striped">
+        <tbody>
+          <tr>
+            <th>Rocket</th>
+            <td>{{ bodyInfo.rocket }}</td>
+          </tr>
+          <tr>
+            <th>Launch site</th>
+            <td>{{ bodyInfo.site }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="button" slot="footer-button" @click="closeModal">Cancel</button>
+    </modal>-->
+    <modal-config v-show="isConfigVisible" @close="closeModal"></modal-config>
+    <modal-add-data v-show="isAddDataVisible" @close="closeModal"></modal-add-data>
     <section class="hero is-info">
       <div class="hero-head">
         <nav class="navbar">
@@ -34,14 +55,20 @@
 <script>
 import DashboardChart from "./DashboardChart.vue";
 import DashboardTable from "./DashboardTable.vue";
+import ModalConfig from "./ModalConfig.vue";
+import ModalAddData from "./ModalAddData.vue";
 
 export default {
   components: {
     DashboardChart,
-    DashboardTable
+    DashboardTable,
+    ModalConfig,
+    ModalAddData
   },
   data() {
     return {
+      isConfigVisible: false,
+      isAddDataVisible: false,
       chartData: Object,
       rawData: [
         { date: "1-10-19", offPeak: 15000, peak: 31000 },
@@ -51,8 +78,16 @@ export default {
     };
   },
   methods: {
-    addData() {},
-    config() {}
+    addData() {
+      this.isAddDataVisible = true;
+    },
+    config() {
+      this.isConfigVisible = true;
+    },
+    closeModal() {
+      this.isConfigVisible = false;
+      this.isAddDataVisible = false;
+    }
   },
   created() {
     let xAxis = [];
