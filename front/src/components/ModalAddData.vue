@@ -3,17 +3,26 @@
     <modal>
       <p slot="title">{{ title }}</p>
       <button class="delete" slot="header-button" @click="close" aria-label="close"></button>
-      <p class="content" slot="body">{{ bodyInfo.details }}</p>
       <br />
       <table slot="body-infos" class="table is-striped">
         <tbody>
           <tr>
-            <th>Entry One</th>
-            <td>{{ bodyInfo.details }}</td>
+            <th>Date :</th>
+            <td>
+              <input v-model="bodyInfo.date" placeholder="Value" />
+            </td>
           </tr>
           <tr>
-            <th>Entry Two</th>
-            <td>{{ bodyInfo.details }}</td>
+            <th>Peak value :</th>
+            <td>
+              <input v-model="bodyInfo.peak" placeholder="Value" />
+            </td>
+          </tr>
+          <tr>
+            <th>Off-Peak value :</th>
+            <td>
+              <input v-model="bodyInfo.offPeak" placeholder="Value" />
+            </td>
           </tr>
         </tbody>
       </table>
@@ -34,7 +43,10 @@ export default {
       isModalVisible: false,
       title: "",
       bodyInfo: {
-        details: ""
+        title: "",
+        date: "",
+        peak: 0,
+        offPeak: 0
       }
     };
   },
@@ -46,6 +58,8 @@ export default {
   mounted() {
     // TODO: Loads Config from axios
     this.title = "Add data";
+    this.bodyInfo.title = "New values";
+    this.bodyInfo.date = new Date().toLocaleDateString();
   }
 };
 </script>
