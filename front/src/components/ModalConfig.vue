@@ -3,17 +3,26 @@
     <modal>
       <p slot="title">{{ title }}</p>
       <button class="delete" slot="header-button" @click="close" aria-label="close"></button>
-      <p class="content" slot="body">{{ bodyInfo.details }}</p>
       <br />
       <table slot="body-infos" class="table is-striped">
         <tbody>
           <tr>
-            <th>Entry One</th>
-            <td>{{ bodyInfo.details }}</td>
+            <th>Peak price :</th>
+            <td>
+              <input v-model="bodyInfo.peakPrice" placeholder="Value" />
+            </td>
           </tr>
           <tr>
-            <th>Entry Two</th>
-            <td>{{ bodyInfo.details }}</td>
+            <th>Off-Peak price :</th>
+            <td>
+              <input v-model="bodyInfo.offPeakPrice" placeholder="Value" />
+            </td>
+          </tr>
+          <tr>
+            <th>Other taxes (%) :</th>
+            <td>
+              <input v-model="bodyInfo.taxes" placeholder="Value" />
+            </td>
           </tr>
         </tbody>
       </table>
@@ -34,7 +43,9 @@ export default {
       isModalVisible: false,
       title: "",
       bodyInfo: {
-        details: ""
+        peakPrice: "",
+        offPeakPrice: "",
+        taxes: 0
       }
     };
   },
